@@ -7,7 +7,7 @@ class StakeholderController {
   async create(req, res, next) {
     try {
         const stakeholder = new Stakeholder(req.body);
-        stakeholder.user = req.user._id;
+        stakeholder.project = req.project._id;
 
         const newStakeholder = await stakeholder.save();
         res.status(201).json(newStakeholder);
@@ -32,7 +32,7 @@ class StakeholderController {
 
   async list(req, res, next) {
     try {
-        const where = { user: req.user._id };
+        const where = { project: req.project._id };
         const [list] = await Promise.all([
           Stakeholder
             .find(where)

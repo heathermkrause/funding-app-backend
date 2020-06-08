@@ -1,4 +1,6 @@
 const Project = require('../models/project.model');
+const Connection = require('../models/connection.model');
+const Stakeholder = require('../models/stakeholder.model');
 
 class ProjectController {
     async create(req, res, next) {
@@ -37,6 +39,8 @@ class ProjectController {
 
     async remove(req, res, next) {
         try {
+            await Connection.deleteMany({ project: req.project._id });
+            await Stakeholder.deleteMany({ project: req.project._id });
             await req.project.remove();
             res.json(req.project);
         } catch (error) {

@@ -4,7 +4,7 @@ class ConnectionController {
   async create(req, res, next) {
     try {
       const connection = new Connection(req.body);
-      connection.user = req.user._id;
+      connection.project = req.project._id;
       const newConnection = await connection.save();
       const populatedConnection = await Connection.findById(newConnection._id).populate('from to')
       res.status(201).json(populatedConnection);
@@ -30,7 +30,7 @@ class ConnectionController {
 
   async list(req, res, next) {
     try {
-      const list = await Connection.find({user: req.user._id})
+      const list = await Connection.find({project: req.project._id})
           .populate('from to')
           .lean();
 
@@ -52,7 +52,6 @@ class ConnectionController {
   }
 
   getConnectionByID(req, res, next, id) {
-    console.log('here')
     Connection.findById(id)
       .then(connection => {
         if (!connection) {

@@ -13,9 +13,9 @@ const StakeholderSchema = new Schema(
             required: true,
             default: new Date()
         },
-        user: {
+        project: {
             type: Schema.ObjectId,
-            ref: 'User'
+            ref: 'Project'
         }
     },
     {

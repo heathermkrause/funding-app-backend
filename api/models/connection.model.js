@@ -22,9 +22,9 @@ const ConnectionSchema = new Schema(
             type: String,
             default: null
         },
-        user: {
+        project: {
             type: Schema.ObjectId,
-            ref: 'User',
+            ref: 'Project',
             required: true
         }
     },

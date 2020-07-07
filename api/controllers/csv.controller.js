@@ -8,7 +8,7 @@ class CSVController {
     async export (req, res, next) {
 
         try {
-            const connections = await Connection.find({ user: req.user._id })
+            const connections = await Connection.find({ project: req.query.project_id })
                 .populate('from to')
                 .lean();
 
@@ -20,8 +20,10 @@ class CSVController {
                 note: con.note
             }))
             
+            console.log(connections);
             const json2csvParser = new Parser();
             const csv = json2csvParser.parse(doc); 
+            console.log(csv);
             res.json({data:csv});
         } catch (error) {
             next(error);

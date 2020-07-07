@@ -4,6 +4,7 @@ const { stakeholderRouter } = require('./stakeholder.route');
 const { userRouter } = require('./user.route');
 const { connectionRouter } = require('./connection.route');
 const { projectRouter } = require('./project.route');
+const { profileRouter } = require('./profile.route');
 const { csvRouter } = require('./csv.route');
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
   stakeholderRouter,
   connectionRouter,
   projectRouter,
+  profileRouter,
   csvRouter
 };

@@ -4,7 +4,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 if (isDev) {
   try {
-    dotenv.config();
+    //dotenv.config();
   } catch (e) {
     console.error(e);
   }

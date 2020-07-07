@@ -7,6 +7,7 @@ const {
     stakeholderRouter, 
     connectionRouter,
     projectRouter,
+    profileRouter,
     csvRouter
 } = require('./routes');
 const router = express.Router();
@@ -17,6 +18,7 @@ router.use('/users', isLoggedIn, userRouter);
 router.use('/stakeholders', isLoggedIn, stakeholderRouter);
 router.use('/connections', isLoggedIn, connectionRouter);
 router.use('/projects', isLoggedIn, projectRouter);
+router.use('/profile', isLoggedIn, profileRouter);
 router.use('/csv', isLoggedIn, csvRouter);
 
 module.exports = { apiRouter: router };

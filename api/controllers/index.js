@@ -5,6 +5,7 @@ const { userController } = require('./user.controller');
 const { stakeholderController } = require('./stakeholder.controller');
 const { connectionController } = require('./connection.controller');
 const { projectController } = require('./project.controller');
+const { profileController } = require('./profile.controller');
 const { csvController } = require('./csv.controller');
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
   stakeholderController,
   connectionController,
   projectController,
+  profileController,
   csvController
 };

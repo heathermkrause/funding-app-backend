@@ -2,8 +2,8 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
-const nodemailer = require("nodemailer");
-const sgMail = require('@sendgrid/mail');
+//const nodemailer = require("nodemailer");
+//const sgMail = require('@sendgrid/mail');
 //const mg = require('nodemailer-mailgun-transport');
 var helper = require('sendgrid').mail;
 
@@ -14,7 +14,7 @@ const { exists } = require('../models/user.model');
 const User = mongoose.model('User');
 
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 // // This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
@@ -128,7 +128,7 @@ class AuthController {
       //   html: "<b>Hi Bernie,</b><br/><br/>Did you request to reset your password? If you did, click the button below and reset! If you didn't send in the request, just ignore this email.<br/><br/><br/><a target='_blank' href='localhost:3000/auth/reset-password?token=" + token + "&email=" + email + "'>Reset Password</a>", // html body
       // });
 
-      let text = "<b>Hi Bernie,</b><br/><br/>Did you request to reset your password? If you did, click the button below and reset! If you didn't send in the request, just ignore this email.<br/><br/><br/><a href='http://localhost:3000/auth/reset-password?token=" + token + "&email=" + email + "'>Reset Password</a>";
+      let text = "<b>Hi Bernie,</b><br/><br/>Did you request to reset your password? If you did, click the button below and reset! If you didn't send in the request, just ignore this email.<br/><br/><br/><a href='" + process.env.DOMAIN_NAME + "/auth/reset-password?token=" + token + "&email=" + email + "'>Reset Password</a>";
 
       var from_email = new helper.Email(process.env.MAIL_FROM_ADDRESS);
       var to_email = new helper.Email(email);

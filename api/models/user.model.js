@@ -35,7 +35,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
       select: false
-    }
+    },
+    current_project_id: {
+      type: String,
+      default: '',
+      required: false,
+      trim: true
+    },
   },
   { timestamps: true, versionKey: false }
 );

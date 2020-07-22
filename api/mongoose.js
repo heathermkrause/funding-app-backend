@@ -4,7 +4,7 @@ const config = require('../config');
 
 const initializeMongo = () => {
   if (config.isDev) {
-    mongoose.set('debug', true);
+    //mongoose.set('debug', true);
   }
 
   mongoose.connect(

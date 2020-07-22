@@ -31,7 +31,11 @@ class ProjectController {
     async list(req, res, next) {
         try {
             const project = await Project.find({user: req.user.id});
-            res.json({ list: project });
+            console.log('current_project_id', req.user.current_project_id);
+            // let projects = project.map(item => {
+            //     return {...item, selected: item._id == req.user.current_project_id};
+            // })
+            res.json({ list: project, selected_project_id: req.user.current_project_id });
         } catch (error) {
             next(error);
         }
@@ -56,6 +60,8 @@ class ProjectController {
                     return;
                 }
 
+                req.user.current_project_id = project._id;
+                req.user.save();
                 req.project = project;
                 next();
             })

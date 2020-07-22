@@ -46,6 +46,8 @@ class ProjectController {
             await Connection.deleteMany({ project: req.project._id });
             await Stakeholder.deleteMany({ project: req.project._id });
             await req.project.remove();
+            req.user.current_project_id = '';
+            req.user.save();
             res.json(req.project);
         } catch (error) {
             next(error);

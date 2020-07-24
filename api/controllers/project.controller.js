@@ -8,6 +8,8 @@ class ProjectController {
             const project = new Project(req.body);
             project.user = req.user._id;
             const newProject = await project.save();
+            req.user.current_project_id = newProject._id;
+            req.user.save();
             res.status(201).json(newProject);
         } catch (err) {
             next(err);
@@ -31,7 +33,7 @@ class ProjectController {
     async list(req, res, next) {
         try {
             const project = await Project.find({user: req.user.id});
-            console.log('current_project_id', req.user.current_project_id);
+            //console.log('current_project_id', req.user.current_project_id);
             // let projects = project.map(item => {
             //     return {...item, selected: item._id == req.user.current_project_id};
             // })
